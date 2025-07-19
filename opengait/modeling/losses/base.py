@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch
 from opengait.utils import Odict
 import functools
-from utils import ddp_all_gather
+from opengait.utils import ddp_all_gather
 
 
 def gather_and_scale_wrapper(func):

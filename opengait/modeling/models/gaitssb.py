@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from ..base_model import BaseModel
 from ..modules import PackSequenceWrapper, HorizontalPoolingPyramid, SetBlockWrapper, ParallelBN1d, SeparateFCs
 
-from utils import np2var, list2var, get_valid_args, ddp_all_gather
+from ...utils import np2var, list2var, get_valid_args, ddp_all_gather
 from data.transform import get_transform
 from einops import rearrange
 

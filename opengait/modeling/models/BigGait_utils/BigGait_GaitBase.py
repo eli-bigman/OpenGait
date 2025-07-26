@@ -132,8 +132,21 @@ class Post_ResNet9(ResNet):
         return x
 
 
-from ....utils import get_valid_args, is_list, is_dict, np2var, ts2np, list2var, get_attr_from
-from ... import backbones
+# Fixed import for Kaggle/scripting environments
+try:
+    from opengait.utils import get_valid_args, is_list, is_dict, np2var, ts2np, list2var, get_attr_from
+    from opengait.modeling import backbones
+except ImportError:
+    # Fallback for different environments
+    import sys
+    import os
+    # Add the OpenGait root to path
+    opengait_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
+    if opengait_root not in sys.path:
+        sys.path.insert(0, opengait_root)
+    
+    from opengait.utils import get_valid_args, is_list, is_dict, np2var, ts2np, list2var, get_attr_from
+    from opengait.modeling import backbones
 class Baseline(nn.Module):
     def __init__(self, model_cfg):
         super(Baseline, self).__init__()

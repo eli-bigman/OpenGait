@@ -250,7 +250,7 @@ class BaseModel(MetaModel, nn.Module):
         load_ckpt_strict = self.engine_cfg['restore_ckpt_strict']
 
         checkpoint = torch.load(save_name, map_location=torch.device(
-            "cuda", self.device))
+            "cuda", self.device), weights_only=False)
         model_state_dict = checkpoint['model']
 
         if not load_ckpt_strict:

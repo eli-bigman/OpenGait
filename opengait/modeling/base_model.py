@@ -34,10 +34,6 @@ from evaluation import evaluator as eval_functions
 from utils import NoOp
 from utils import get_msg_mgr
 
-import torch.serialization
-from only_train_once.transform.tensor_transform import TensorTransform
-torch.serialization.add_safe_globals([TensorTransform])
-
 
 __all__ = ['BaseModel']
 
@@ -254,7 +250,7 @@ class BaseModel(MetaModel, nn.Module):
     def _load_ckpt(self, save_name):
         load_ckpt_strict = self.engine_cfg['restore_ckpt_strict']
 
-        checkpoint = torch.load(save_name, map_location=torch.device("cuda", self.device), weights_only=False)
+        checkpoint = torch.load(save_name, map_location=torch.device("cuda", self.device))
         model_state_dict = checkpoint['model']
 
         if not load_ckpt_strict:
